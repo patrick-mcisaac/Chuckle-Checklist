@@ -2,16 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 @import "tailwindcss";
 
-/* Add your own colors here */
-:root {
-	--col-0: #fbabb7;
-	--col-1: #f391a0;
-	--col-2: #ea3788;
-	--col-3: #b0228c;
-	--col-4: #282c34;
-	--col-5: #a4eb7c;
-}
-
 @layer base {
 	*,
 	*::before,
