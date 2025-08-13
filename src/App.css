@@ -1,3 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 @import "tailwindcss";
+
+@theme {
+	--color-pink-100: #d620d6;
+	--color-green-100: #093609;
+}

@@ -46,23 +46,22 @@ export const App = () => {
 	}, [buttonClicked])
 
 	return (
-		<>
-			<header>
-				<h1>Chuckle Checklist</h1>
+		<div className="grid grid-rows-2 -mt-20 place-content-center grid-cols-[75vw] justify-items-stretch items-end">
+			<header className="border-b-5 border-b-pink-100 flex flex-col gap-8 pb-0">
+				<h1 className="text-center text-4xl">Chuckle Checklist</h1>
+				<h2 className="text-xl font-semibold ml-5 mb-2">Add Joke</h2>
 			</header>
-			<main>
-				<h2>Add Joke</h2>
-
-				<div>
+			<main className="flex flex-col items-center mt-10">
+				<div className="flex justify-between w-[100%]">
 					<input
-						className="p-5 text-2xl"
+						className="text-2xl"
 						type="text"
 						value={userInput}
 						placeholder="New One Liner"
 						onChange={e => setUserInput(e.target.value)}
 					/>
 					<button
-						className=""
+						className="border-green-100 rounded-2xl border-2 p-[1rem_3rem] text-green-100 font-bold"
 						onClick={() => {
 							setButtonClicked(buttonClicked + 1)
 						}}>
@@ -70,10 +69,12 @@ export const App = () => {
 					</button>
 				</div>
 
-				<section>
-					<div>
-						<h2>Untold</h2>
-						<p>{untoldJokes.length} untold jokes</p>
+				<section className="flex justify-evenly gap-40 w-[100%] mt-20 items-start">
+					<div className="w-[30%]">
+						<header className="border-b-5 border-b-pink-100 w-[100%]">
+							<h2 className="text-xl font-semibold">Untold</h2>
+							<p>{untoldJokes.length} untold jokes</p>
+						</header>
 						<ul>
 							{untoldJokes.map(joke => {
 								return <li key={joke.id}>{joke.text}</li>
@@ -81,9 +82,11 @@ export const App = () => {
 						</ul>
 					</div>
 
-					<div>
-						<h2>Told</h2>
-						<p>{toldJokes.length} told jokes</p>
+					<div className="w-[30%]">
+						<header className="border-b-5 border-b-pink-100 w-[100%]">
+							<h2 className="text-xl font-semibold">Told</h2>
+							<p>{toldJokes.length} told jokes</p>
+						</header>
 						<ul>
 							{toldJokes.map(joke => {
 								return <li key={joke.id}>{joke.text}</li>
@@ -92,6 +95,6 @@ export const App = () => {
 					</div>
 				</section>
 			</main>
-		</>
+		</div>
 	)
 }
