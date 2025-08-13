@@ -10,3 +10,7 @@ export const postJoke = data => {
 		body: JSON.stringify(data)
 	})
 }
+
+export const getAllJokes = async () => {
+	return fetch("http://localhost:8088/jokes").then(res => res.json())
+}
