@@ -3,6 +3,19 @@
 @import "tailwindcss";
 
 @theme {
-	--color-pink-100: #d620d6;
-	--color-green-100: #093609;
+  --color-pink-100: #d620d6;
+  --color-green-100: #093609;
+}
+
+body {
+  background: linear-gradient(
+    322deg,
+    #ca3b8a 2%,
+    #f953c6 90%,
+    rgb(228, 156, 216)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
 }
