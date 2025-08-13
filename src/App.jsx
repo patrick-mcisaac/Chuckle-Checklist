@@ -1,49 +1,49 @@
-import "./App.css";
-import React, { useEffect, useState } from "react";
-import { getAllJokes, postJoke } from "./services/jokeService.jsx";
+import "./App.css"
+import React, { useEffect, useState } from "react"
+import { getAllJokes, postJoke } from "./services/jokeService.jsx"
 
 export const App = () => {
-  const [userInput, setUserInput] = useState("");
-  const [buttonClicked, setButtonClicked] = useState(0);
-  const [allJokes, setAllJokes] = useState([]);
-  const [untoldJokes, setUntoldJokes] = useState([]);
-  const [toldJokes, setToldJokes] = useState([]);
+  const [userInput, setUserInput] = useState("")
+  const [buttonClicked, setButtonClicked] = useState(0)
+  const [allJokes, setAllJokes] = useState([])
+  const [untoldJokes, setUntoldJokes] = useState([])
+  const [toldJokes, setToldJokes] = useState([])
 
   // function to retrieve the jokes from database
   const getJokes = () => {
-    return getAllJokes().then((jokeArr) => setAllJokes(jokeArr));
-  };
+    return getAllJokes().then((jokeArr) => setAllJokes(jokeArr))
+  }
 
   // store all jokes
   useEffect(() => {
-    getJokes();
-  }, []);
+    getJokes()
+  }, [])
 
   // store untold jokes
   useEffect(() => {
-    const untold = allJokes.filter((joke) => !joke.told);
-    setUntoldJokes(untold);
-  }, [allJokes]);
+    const untold = allJokes.filter((joke) => !joke.told)
+    setUntoldJokes(untold)
+  }, [allJokes])
 
   // Store Told Jokes
   useEffect(() => {
-    const told = allJokes.filter((joke) => joke.told);
-    setToldJokes(told);
-  }, [allJokes]);
+    const told = allJokes.filter((joke) => joke.told)
+    setToldJokes(told)
+  }, [allJokes])
 
   useEffect(() => {
     if (buttonClicked === 0 || userInput === "") {
-      ("");
+      ;("")
     } else {
       const data = {
         text: userInput,
-        told: false,
-      };
-      postJoke(data).then(() => getJokes());
-      setUserInput("");
-      setButtonClicked(0);
+        told: false
+      }
+      postJoke(data).then(() => getJokes())
+      setUserInput("")
+      setButtonClicked(0)
     }
-  }, [buttonClicked]);
+  }, [buttonClicked])
 
   // rerender when updated database
 
@@ -65,7 +65,7 @@ export const App = () => {
           <button
             className="h-10 w-30 cursor-pointer rounded-2xl border-2 border-green-100 font-bold text-green-100 shadow-sm shadow-cyan-400 hover:border-0 hover:bg-green-500 hover:text-white"
             onClick={() => {
-              setButtonClicked(buttonClicked + 1);
+              setButtonClicked(buttonClicked + 1)
             }}
           >
             Add
@@ -89,7 +89,7 @@ export const App = () => {
                   >
                     {joke.text}
                   </li>
-                );
+                )
               })}
             </ul>
           </div>
@@ -110,12 +110,14 @@ export const App = () => {
                   >
                     {joke.text}
                   </li>
-                );
+                )
               })}
             </ul>
           </div>
         </section>
       </main>
     </div>
-  );
-};
+  )
+}
+
+// mark jokes as told Fulfilled Chuckles
