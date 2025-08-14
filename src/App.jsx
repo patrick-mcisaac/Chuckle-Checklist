@@ -48,22 +48,22 @@ export const App = () => {
   // rerender when updated database
 
   return (
-    <div className="grid grid-cols-[50vw] grid-rows-[10vh_1fr] place-content-center items-start justify-items-stretch bg-white p-10">
-      <header className="flex flex-col border-b-5 border-b-pink-100">
+    <div className="grid grid-cols-[50vw] grid-rows-[10vh_1fr] place-content-center items-start justify-items-stretch rounded-[2rem] bg-white p-10 shadow-lg shadow-gray-700">
+      <header className="flex flex-col border-b-5 border-b-[var(--pink-100)]">
         <h1 className="text-center text-4xl">Chuckle Checklist</h1>
         <h2 className="mb-2 ml-5 text-xl font-semibold">Add Joke</h2>
       </header>
       <main className="flex flex-col items-center self-start">
-        <div className="flex w-[100%] justify-between p-3">
+        <div className="flex w-[100%] justify-between p-5">
           <input
-            className="text-2xl"
+            className="rounded-2xl pl-5 text-xl shadow shadow-gray-500 focus:border-1 focus:shadow-none focus:outline-gray-400"
             type="text"
             value={userInput}
             placeholder="New One Liner"
             onChange={(e) => setUserInput(e.target.value)}
           />
           <button
-            className="h-10 w-30 cursor-pointer rounded-2xl border-2 border-green-100 font-bold text-green-100 shadow-sm shadow-cyan-400 hover:border-0 hover:bg-green-500 hover:text-white"
+            className="h-10 w-30 cursor-pointer rounded-2xl font-bold text-gray-900 shadow-sm shadow-gray-500 transition-all duration-250 hover:bg-green-500 hover:text-white hover:shadow-md hover:text-shadow-[0px_2px_2px] hover:text-shadow-gray-700"
             onClick={() => {
               setButtonClicked(buttonClicked + 1)
             }}
@@ -72,43 +72,49 @@ export const App = () => {
           </button>
         </div>
 
-        <section className="mt-5 flex w-[100%] items-start justify-evenly gap-40">
-          <div className="w-[35%]">
-            <header className="flex w-[100%] justify-between border-b-5 border-b-pink-100 p-[0_1rem]">
+        <section className="mt-5 flex w-[100%] items-start justify-evenly gap-20">
+          <div className="w-[40%]">
+            <header className="flex w-[100%] justify-between border-b-5 border-b-[var(--pink-100)] p-[0_.5rem]">
               <h2 className="text-xl font-semibold">Untold</h2>
-              <p className="text-2xl font-semibold text-pink-100">
+              <p className="text-( text-2xl font-semibold text-[var(--pink-300)]">
                 {untoldJokes.length}
               </p>
             </header>
-            <ul className="flex list-none flex-col">
+            <ul className="mt-1 flex list-none flex-col">
               {untoldJokes.map((joke) => {
                 return (
                   <li
                     key={joke.id}
-                    className="mt-5 border-b-[.1rem] border-dashed border-b-black pb-3"
+                    className="flex h-20 items-center justify-between border-b-[.1rem] border-dashed border-b-black text-left font-medium"
                   >
-                    {joke.text}
+                    <span className="w-80 text-[1rem]">{joke.text}</span>
+                    <button>
+                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
+                    </button>
                   </li>
                 )
               })}
             </ul>
           </div>
 
-          <div className="w-[35%]">
-            <header className="flex w-[100%] justify-between border-b-5 border-b-pink-100 p-[0_1rem]">
+          <div className="w-[40%]">
+            <header className="flex w-[100%] justify-between border-b-5 border-b-[var(--pink-100)] p-[0_.5rem]">
               <h2 className="text-xl font-semibold">Told</h2>
-              <p className="text-2xl font-semibold text-green-600">
+              <p className="text-2xl font-semibold text-[var(--green-100)]">
                 {toldJokes.length}
               </p>
             </header>
-            <ul className="flex list-none flex-col">
+            <ul className="mt-1 flex list-none flex-col">
               {toldJokes.map((joke) => {
                 return (
                   <li
                     key={joke.id}
-                    className="mt-5 border-b-[.1rem] border-dashed border-b-black pb-3"
+                    className="flex h-20 items-center justify-between border-b-[.1rem] border-dashed border-b-black text-left font-medium"
                   >
-                    {joke.text}
+                    <span className="w-80 text-[1rem]">{joke.text}</span>
+                    <button className="">
+                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
+                    </button>
                   </li>
                 )
               })}

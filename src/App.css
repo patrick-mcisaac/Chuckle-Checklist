@@ -2,18 +2,14 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
 @import "tailwindcss";
 
-@theme {
-  --color-pink-100: #d620d6;
-  --color-green-100: #093609;
+:root {
+  --pink-100: #ee42ee75;
+  --pink-300: rgb(180, 66, 209);
+  --green-100: #279c27d7;
 }
 
 body {
-  background: linear-gradient(
-    322deg,
-    #ca3b8a 2%,
-    #f953c6 90%,
-    rgb(228, 156, 216)
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(322deg, #ff87ca, #cea1d3);
 
   display: grid;
   place-content: center;
