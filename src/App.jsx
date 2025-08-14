@@ -89,7 +89,7 @@ export const App = () => {
                   >
                     <span className="w-80 text-[1rem]">{joke.text}</span>
                     <button>
-                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
+                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-[var(--green-100)] hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
                     </button>
                   </li>
                 )
@@ -112,8 +112,8 @@ export const App = () => {
                     className="flex h-20 items-center justify-between border-b-[.1rem] border-dashed border-b-black text-left font-medium"
                   >
                     <span className="w-80 text-[1rem]">{joke.text}</span>
-                    <button className="">
-                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
+                    <button>
+                      <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-[var(--green-100)] hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
                     </button>
                   </li>
                 )
