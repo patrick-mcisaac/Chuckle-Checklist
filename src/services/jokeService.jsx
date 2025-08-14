@@ -27,3 +27,9 @@ export const patchJoke = (data, id) => {
     body: JSON.stringify(data)
   })
 }
+
+export const deleteJokeRequest = id => {
+  return fetch(`${url}/${id}`, {
+    method: "DELETE"
+  })
+}
