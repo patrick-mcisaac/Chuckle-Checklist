@@ -1,6 +1,6 @@
 import "./App.css"
 import React, { useEffect, useState } from "react"
-import { getAllJokes, postJoke } from "./services/jokeService.jsx"
+import { getAllJokes, postJoke, patchJoke } from "./services/jokeService.jsx"
 
 export const App = () => {
   const [userInput, setUserInput] = useState("")
@@ -11,7 +11,7 @@ export const App = () => {
 
   // function to retrieve the jokes from database
   const getJokes = () => {
-    return getAllJokes().then((jokeArr) => setAllJokes(jokeArr))
+    return getAllJokes().then(jokeArr => setAllJokes(jokeArr))
   }
 
   // store all jokes
@@ -19,18 +19,17 @@ export const App = () => {
     getJokes()
   }, [])
 
-  // store untold jokes
   useEffect(() => {
-    const untold = allJokes.filter((joke) => !joke.told)
+    // store untold jokes
+    const untold = allJokes.filter(joke => !joke.told)
     setUntoldJokes(untold)
-  }, [allJokes])
 
-  // Store Told Jokes
-  useEffect(() => {
-    const told = allJokes.filter((joke) => joke.told)
+    // Store Told Jokes
+    const told = allJokes.filter(joke => joke.told)
     setToldJokes(told)
   }, [allJokes])
 
+  // rerender when updated database
   useEffect(() => {
     if (buttonClicked === 0 || userInput === "") {
       ;("")
@@ -45,7 +44,13 @@ export const App = () => {
     }
   }, [buttonClicked])
 
-  // rerender when updated database
+  const updateTheJoke = joke => {
+    const id = joke.id
+    const data = {
+      told: !joke.told
+    }
+    patchJoke(data, id).then(() => getJokes())
+  }
 
   return (
     <div className="grid grid-cols-[50vw] grid-rows-[10vh_1fr] place-content-center items-start justify-items-stretch rounded-[2rem] bg-white p-10 shadow-lg shadow-gray-700">
@@ -60,7 +65,7 @@ export const App = () => {
             type="text"
             value={userInput}
             placeholder="New One Liner"
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={e => setUserInput(e.target.value)}
           />
           <button
             className="h-10 w-30 cursor-pointer rounded-2xl font-bold text-gray-900 shadow-sm shadow-gray-500 transition-all duration-250 hover:bg-green-500 hover:text-white hover:shadow-md hover:text-shadow-[0px_2px_2px] hover:text-shadow-gray-700"
@@ -81,14 +86,14 @@ export const App = () => {
               </p>
             </header>
             <ul className="mt-1 flex list-none flex-col">
-              {untoldJokes.map((joke) => {
+              {untoldJokes.map(joke => {
                 return (
                   <li
                     key={joke.id}
                     className="flex h-20 items-center justify-between border-b-[.1rem] border-dashed border-b-black text-left font-medium"
                   >
                     <span className="w-80 text-[1rem]">{joke.text}</span>
-                    <button>
+                    <button onClick={() => updateTheJoke(joke)}>
                       <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-[var(--green-100)] hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
                     </button>
                   </li>
@@ -105,14 +110,14 @@ export const App = () => {
               </p>
             </header>
             <ul className="mt-1 flex list-none flex-col">
-              {toldJokes.map((joke) => {
+              {toldJokes.map(joke => {
                 return (
                   <li
                     key={joke.id}
                     className="flex h-20 items-center justify-between border-b-[.1rem] border-dashed border-b-black text-left font-medium"
                   >
                     <span className="w-80 text-[1rem]">{joke.text}</span>
-                    <button>
+                    <button onClick={() => updateTheJoke(joke)}>
                       <i className="fa-regular fa-face-laugh-beam cursor-pointer text-xl transition hover:scale-150 hover:text-[var(--green-100)] hover:text-shadow-gray-500 hover:text-shadow-xs"></i>
                     </button>
                   </li>
@@ -125,5 +130,3 @@ export const App = () => {
     </div>
   )
 }
-
-// mark jokes as told Fulfilled Chuckles
